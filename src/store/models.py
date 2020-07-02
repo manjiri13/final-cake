@@ -17,12 +17,18 @@ class ProductDetail(models.Model):
     @property
     def get_price_1kg(self):
         products = self.product_set.all()
-        price_list = [product.get_price for product in products if product.size == 1]
+        price_list = [product.get_price for product in products if product.size == 0.5]
         price = price_list[0]
         return price
+
+    def get_price_size_all(self):
+        products = self.product_set.all()
+        p_size_list = [product.get_price_size for product in products]
+        return p_size_list
+    
     
     def get_absolute_url(self):
-        return reverse('product-detail', kwargs={'pk': self.pk})
+        return reverse('product-detail', kwargs={'pk': self.pk , 'slug': self.name})
     
 
 class Product(models.Model):
@@ -37,6 +43,13 @@ class Product(models.Model):
     def get_price(self):
         price = int(self.price)
         return price
+    
+    @property
+    def get_price_size(self):
+        size = self.size
+        price = int(self.price)
+        return size,price
+
 
 
 class Order(models.Model):

@@ -67,18 +67,22 @@
   {% for product in products %}
   <div class="col-lg-4 col-md-6 mb-4">
     <div class="card h-100">
-      <a href="{% url 'store-detail' %}"
+      <a href="{% url 'store-detail' product.id %}"
         ><img class="card-img-top" src="{{ product.image.url }}" alt=""
       /></a>
       <div class="card-body">
         <h4 class="card-title">
-          <a href="{% url 'store-detail' %}">{{ product.name }}</a>
+          <a href="{% url 'store-detail' product.id %}">{{ product.name }}</a>
         </h4>
         <div class="row-lg-2">
           <h5>&#x20b9; {{ product.get_price_1kg }}</h5>
           {% if product.egg %}
           <p class="card-text">
-            <img class="icon-egg" src="{% static 'images/non-veg.jpg' %}" alt="" />
+            <img
+              class="icon-egg"
+              src="{% static 'images/non-veg.jpg' %}"
+              alt=""
+            />
             Contains Egg
           </p>
           {% else %}

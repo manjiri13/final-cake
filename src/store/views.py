@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import DetailView
 # Create your views here.
 
 
@@ -13,11 +14,7 @@ def home(request):
     return render(request, 'store/home.html', context)
 
 
-def productDetailView(request, ):  #id = None
-    # product = get_object_or_404(ProductDetail, id=id)
-    context = {
-        'title' : 'details',
-        # 'product' : product, 
-    }
 
-    return render(request, 'store/details.html', context)
+
+class ProductDetailView(DetailView):
+    model = ProductDetail
