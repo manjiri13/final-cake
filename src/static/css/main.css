@@ -103,6 +103,30 @@ a.article-title:hover {
   border-radius: 50%;
   font-size: 14px;
 }
+.cart-row {
+  display: flex;
+  align-items: flex-stretch;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ececec;
+}
+.quantity {
+  display: inline-block;
+  font-weight: 700;
+  padding-right: 10px;
+}
+
+.chg-quantity {
+  width: 12px;
+  cursor: pointer;
+  display: block;
+  margin-top: 5px;
+  transition: 0.1s;
+}
+
+.chg-quantity:hover {
+  opacity: 0.6;
+}
 .icon-egg {
   width: 20px;
 }
@@ -135,6 +159,6 @@ a.article-title:hover {
   padding: 20px 0;
   border: 1px solid #eee;
 }
-.hygiene{
+.hygiene {
   font-size: 14px;
 }
