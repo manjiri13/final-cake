@@ -130,4 +130,11 @@ a.article-title:hover {
   padding: 10px;
   margin: 5px;
 }
-
+.assurance {
+  margin-top: 24px;
+  padding: 20px 0;
+  border: 1px solid #eee;
+}
+.hygiene{
+  font-size: 14px;
+}
