@@ -1,6 +1,5 @@
-from django.shortcuts import render
 from .models import *
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from django.views.generic import DetailView
 from django.views.generic.detail import SingleObjectMixin
 from django.http import JsonResponse
@@ -11,6 +10,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm,CustomerForm
+from django.contrib import messages
 # Create your views here.
 
 
@@ -26,10 +26,11 @@ def home(request):
         order = {'get_cart_total': 0, 'get_cart_items': 0}
         cartItems = order['get_cart_items']
     prdoucts = ProductDetail.objects.all()
+    messages.warning(request,'Zero Contact Delivery')
     context = {
         'title': 'Home',
         'products': prdoucts,
-        'cartItems': cartItems
+        'cartItems': cartItems,
     }
     return render(request, 'store/home.html', context)
 
@@ -163,7 +164,8 @@ def Login(request):
         if user:
             if user.is_active:
                 login(request,user)
-                return HttpResponseRedirect(reverse('store-home'))
+                messages.success(request, f'Sucessfully LoggedIn !!')
+                return redirect('store-home')
             else:
                 return HttpResponse("Your account was inactive.")
         else:
@@ -195,7 +197,8 @@ def Register(request):
         else:
             print(user_form.errors,customer_form.errors)
         if registered:
-            return HttpResponseRedirect(reverse('login'))
+            messages.success(request, f'Account created Now you can Log In !!')
+            return redirect('login')
     else:
         user_form = UserForm()
         customer_form = CustomerForm()
