@@ -5,6 +5,7 @@ from django.views.generic import DetailView
 from django.views.generic.detail import SingleObjectMixin
 from django.http import JsonResponse
 import json
+import datetime
 # Create your views here.
 
 
@@ -100,6 +101,7 @@ def checkout(request):
         cartItems = order['get_cart_items']
 
     context = {'items': items, 'order': order, 'cartItems': cartItems}
+
     return render(request, 'store/checkout.html', context)
 
 def processOrder(request):
