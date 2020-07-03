@@ -4,6 +4,14 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 # Create your models here.
 
+class Customer(models.Model):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, null=True, blank=True)
+    name = models.CharField(max_length=50)
+    email = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 class ProductDetail(models.Model):
     name = models.CharField(max_length = 50)
@@ -53,7 +61,7 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     date_ordered = models.DateTimeField(default=timezone.now)
     complete = models.BooleanField(default=False)
 
@@ -89,7 +97,7 @@ class OrderItem(models.Model):
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, blank=True)
+        Customer, on_delete=models.SET_NULL, null=True, blank=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     appt = models.CharField(max_length=50, null=False)
     area = models.CharField(max_length=100, null=False)
