@@ -42,22 +42,22 @@
       {% for item in items %}
       <div class="cart-row">
         <div style="flex: 2;">
-          <img class="row-image" src="{{ item.product.productdetails.image.url }}" alt="" />
+          <img class="row-image" src="{{ item.product.image.url }}" alt="" />
         </div>
-        <div style="flex: 2;">{{ item.product.productdetails.name }}</div>
+        <div style="flex: 2;">{{ item.product.name }}</div>
         <div style="flex: 1;">&#x20B9;{{ item.product.price }}</div>
         <div style="flex: 1;">
           <p class="quantity">{{ item.quantity }}</p>
           <div class="quantity">
             <img
-              data-product="{{ item.product.productdetails.id }}"
+              data-product="{{ item.product.id }}"
               data-action="add"
               class="chg-quantity update-cart"
               src="{% static  'images/up_arrow.png' %}"
             />
 
             <img
-              data-product="{{ item.product.productdetails.id }}"
+              data-product="{{ item.product.id }}"
               data-action="remove"
               class="chg-quantity update-cart"
               src="{% static  'images/down_arrow.png' %}"

@@ -45,22 +45,27 @@
             title="Cake Hygiene Maintain"
             style="width: auto;"
           />
-          <span class="hygiene">We Keep your Safety First before we Start to even Bake</span>
+          <span class="hygiene"
+            >We Keep your Safety First before we Start to even Bake</span
+          >
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card size-price">
+              <h5>4 Kg</h5>
+              <h4>&#x20b9; {{ object.price }}</h4>
+              <button
+                data-product="{{ object.id }}"
+                data-action="add"
+                type="button"
+                class="btn btn-outline-success add-cart"
+              >
+                Add To Cart
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      {% for detail in object.get_price_size_all %}
-      <div class="col-lg-3">
-        <div class="card size-price">
-          <h5>{{ detail.0 }} Kg</h5>
-          <h4>&#x20b9; {{ detail.1 }}</h4>
-          <button data-product = "{{ object.id }}" data-action="add" type="button" class="btn btn-outline-success add-cart">
-            Add To Cart
-          </button>
-        </div>
-      </div>
-      {% endfor %}
     </div>
   </div>
 </div>
