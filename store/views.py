@@ -6,6 +6,11 @@ from django.views.generic.detail import SingleObjectMixin
 from django.http import JsonResponse
 import json
 import datetime
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from .forms import UserForm,CustomerForm
 # Create your views here.
 
 
@@ -28,6 +33,22 @@ def home(request):
     }
     return render(request, 'store/home.html', context)
 
+def OnOrder(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(
+            customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_items': 0}
+        cartItems = order['get_cart_items']
+    context = {
+        'title': 'On Order',
+        'cartItems': cartItems
+    }
+    return render(request, 'store/on_order.html', context)
 
 
 
@@ -133,3 +154,50 @@ def processOrder(request):
         print('User Not logged In')
 
     return JsonResponse('Payment Complete', safe=False)
+
+def Login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_active:
+                login(request,user)
+                return HttpResponseRedirect(reverse('store-home'))
+            else:
+                return HttpResponse("Your account was inactive.")
+        else:
+            print("Someone tried to login and failed.")
+            print("They used username: {} and password: {}".format(username,password))
+            return HttpResponse("Invalid login details given")
+    else:
+        return render(request, 'store/login.html', {})
+
+@login_required
+def Logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('store-home'))
+
+def Register(request):
+    registered = False
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+        customer_form = CustomerForm(data=request.POST)
+        if user_form.is_valid() and customer_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
+            customer = customer_form.save(commit=False)
+            customer.user = user
+            customer.name = user.username
+            customer.save()
+            registered = True
+        else:
+            print(user_form.errors,customer_form.errors)
+    else:
+        user_form = UserForm()
+        customer_form = CustomerForm()
+    return render(request,'store/register.html',
+                          {'user_form':user_form,
+                          'customer_form':customer_form,
+                           'registered':registered})
