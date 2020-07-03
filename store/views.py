@@ -194,6 +194,8 @@ def Register(request):
             registered = True
         else:
             print(user_form.errors,customer_form.errors)
+        if registered:
+            return HttpResponseRedirect(reverse('login'))
     else:
         user_form = UserForm()
         customer_form = CustomerForm()
