@@ -3,6 +3,8 @@ from .models import *
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView
 from django.views.generic.detail import SingleObjectMixin
+from django.http import JsonResponse
+import json
 # Create your views here.
 
 
@@ -62,3 +64,25 @@ def cart(request):
 
     context = {'items': items, 'order': order, 'cartItems': cartItems,'title': 'Cart'}
     return render(request, 'store/cart.html', context)
+
+def updateItem(request):
+    data = json.loads(request.body)
+    productId = data['productId']
+    action = data['action']
+
+    customer = request.user.customer
+    product = ProductDetail.objects.get(id=productId)
+    order, created = Order.objects.get_or_create(
+        customer=customer, complete=False)
+    orderItem, created = OrderItem.objects.get_or_create(
+        order=order, product=product)
+
+    if action == 'add':
+        orderItem.quantity = (orderItem.quantity + 1)
+    elif action == 'remove':
+        orderItem.quantity = (orderItem.quantity - 1)
+    orderItem.save()
+
+    if orderItem.quantity <= 0:
+        orderItem.delete()
+    return JsonResponse('item was added', safe=False)
