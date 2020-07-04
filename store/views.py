@@ -26,7 +26,7 @@ def home(request):
         order = {'get_cart_total': 0, 'get_cart_items': 0}
         cartItems = order['get_cart_items']
     prdoucts = ProductDetail.objects.all()
-    messages.warning(request,'Zero Contact Delivery')
+    messages.warning(request,'Zero Contact Delivery De to Covid-19 Pandemic')
     context = {
         'title': 'Home',
         'products': prdoucts,
