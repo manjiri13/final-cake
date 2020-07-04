@@ -17,15 +17,28 @@ ul {
 }
 
 .bg-steel {
-  background-color: #5f788a;
-}
+  background-color: #ff4a4afa;
+  border: #f8f8f8 2x solid;
+  backdrop-filter: blur(20px);
+    border-radius: 20px;}
 
+.navbar-brand{
+  font-weight: bold;
+  font-size: 2em;
+}
+.navbar {
+  width:70vw;
+  margin: 10px 0 50px 15vw;
+}
 .site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+  color: #ffffff;
+  font-weight: bold;
 }
 
 .site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
+  color: #f8ee8f;
+  font-weight: bold;
+  
 }
 
 .site-header .navbar-nav .nav-link.active {
@@ -183,3 +196,7 @@ a.article-title:hover {
   display: inline-block;
   padding: 5px;
 }
+
+/* 
+Testimonial Section
+*/
