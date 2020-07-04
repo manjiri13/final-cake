@@ -7,7 +7,7 @@ input[type="radio"] {
   clip: rect(0 0 0 0);
   overflow: hidden;
   }
-  label{
+  .testi-section > label{
     display:block;
     width:15vw;
     border: 4px solid rgb(160, 160, 160);
@@ -21,10 +21,10 @@ input[type="radio"] {
     background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Ftriagedata.com%2Ftestimonial-background%2F&psig=AOvVaw1V3O_6koJ_uCXXWPgKw7bI&ust=1593919334128000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKD09bPSsuoCFQAAAAAdAAAAABAD");
     background-size: contain;
   }
-  label.second{
+  .testi-section > label.second{
     left:34%;
   }
-  label.third{
+  .testi-section > label.third{
     left:68%;
   }
   .slide h2,h6{
@@ -131,4 +131,18 @@ input[type="radio"] {
   padding: 10px;
   color: white;
   text-align: center;
+  }
+
+  /* card Login */
+  .card-login{
+    text-align: center;
+    box-shadow: 5px 10px #888888;
+  }
+
+  .no-margin{
+    margin: 0;
+  }
+  form{
+    margin: 20px;
+    padding: 20px;
   }

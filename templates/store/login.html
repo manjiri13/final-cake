@@ -1,14 +1,14 @@
 {% extends "base.html" %} {% load static %}{% block content %}
 <div class="container">
-  <div class="jumbotron">
+  <div class="jumbotron card card-login">
     <h1>Login here :</h1>
     <form method="post" action="{% url 'login' %}">
       {% csrf_token %} {# A more "HTML" way of creating the login form#}
-      <label for="username">Username:</label>
+      <label for="username">Username:</label><br class='no-margin'>
       <input type="text" name="username" placeholder="Username" />
-      <label for="password">Password:</label>
+      <br class='no-margin'> <br class='no-margin'>     <label for="password">Password:</label><br class='no-margin'> 
       <input type="password" name="password" placeholder="Password" />
-      <input type="submit" name="" value="Login" />
+      <br class='no-margin'>    <br class='no-margin'>  <input type="submit" name="" value="Login" />
     </form>
   </div>
 </div>
