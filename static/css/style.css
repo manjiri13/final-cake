@@ -136,7 +136,7 @@ input[type="radio"] {
   /* card Login */
   .card-login{
     text-align: center;
-    box-shadow: 5px 10px #888888;
+      box-shadow: 5px 10px #888888;
   }
 
   .no-margin{
@@ -146,3 +146,7 @@ input[type="radio"] {
     margin: 20px;
     padding: 20px;
   }
+  .register{
+    text-align: left;
+  }
+  
