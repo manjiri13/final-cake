@@ -34,6 +34,26 @@ def home(request):
     }
     return render(request, 'store/home.html', context)
 
+def menu(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(
+            customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_items': 0}
+        cartItems = order['get_cart_items']
+    prdoucts = ProductDetail.objects.all()
+   
+    context = {
+        'title': 'Menu',
+        'products': prdoucts,
+        'cartItems': cartItems,
+    }
+    return render(request, 'store/menu.html', context)
+
 def OnOrder(request):
     if request.user.is_authenticated:
         customer = request.user.customer

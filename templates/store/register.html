@@ -1,8 +1,83 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
-<div class="container card card-login register">
-    <div class="register">
-        <h1>Register Here</h1>
-        <h3>Just fill out the form.</h3>
+<head>
+<style>
+    body
+    {background-image: url(../../static/images/loginbg.jpg) ;
+     background-repeat: no-repeat;
+     background-size:cover;
+    font-family: Arial;}
+	
+	.main-container
+    {display: flex; 
+    justify-content: center;}
+	
+	.login-box
+    {border-radius: 4px;
+     background-color: #fff; 
+     width: 450px; box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important; 
+     margin-top: 50px;}
+
+	.header
+    {background-color: black;
+     background-size: cover; 
+     height: 130px; 
+		border-top-left-radius: 4px; 
+        border-top-right-radius: 4px; 
+        display: flex; 
+        justify-content: flex-start; 
+        padding-left: 20px; 
+        align-items: center;	
+        color: #f5f5f5;}
+		
+	.tbox
+    {width: 97.33%; 
+    height: 45px; 
+    padding-left: 10px;
+     border-radius: 3px;
+      border: 1px solid #f1f1f1;
+       margin-bottom: 10px;
+        outline: none; 
+        font-size: 0.9rem;
+	 transition: 0.6s; 
+     color: #333; }
+	 
+	.tbox:focus
+    {border: 1px solid rgba(209,66,105,0.36);
+    transition: 0.6s; 
+    color: #d14269;}
+
+	.login
+    {margin: 15px 20px;}
+	
+	.btn{border: 1px solid #f5f5f5; 
+    width: 100%; padding: 15px 0; 
+    border-radius: 4px; margin-top: 10px;
+     margin-bottom: 10px; 
+		background-color: #033551; color: #f5f5f5; font-size: 1.2rem; outline: none; transition: 0.6s;}
+	.btn:hover{background-color: #333; transition: 0.6s;}
+	
+	.forget-box{text-align: center;}
+	
+	.link{color: #75334e;}
+     @media only screen and (max-width: 1000px){
+         body{
+             background-image: url(../../static/images/loginbg.jpg) ;
+     background-repeat: no-repeat;
+     background-size:150% 150%;
+     
+
+
+         }
+     }
+	
+    </style>
+    </head>
+    <body>
+<div class="main-container">
+	<div class="login-box">
+		<div class="header">
+			<h2>Register to Cakery</h2>
+		</div>
         <form enctype="multipart/form-data" method="POST">
             {% csrf_token %}
             {{ user_form.as_p }}

@@ -1,4 +1,164 @@
 {% extends "base.html" %} {% load static %}{% block content %}
+<head>
+<style>
+.img-wrapper {
+            display: grid;
+            height: 100vh;
+
+        }
+
+        .img-wrapper div {
+            grid-column: 1;
+            grid-row: 1;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: opacity 0.05s;
+        }
+
+        .divspl {
+            padding: 20px 100px;
+            display: grid;
+            grid-template-columns: 400px 400px 400px;
+            grid-template-rows: 450px 450px;
+            grid-gap: 60px;
+            color: #444;
+            align-items: center;
+
+        }
+
+        .divspl div {
+            overflow: hidden;
+            max-height: 300px;
+            background-color: rgb(255, 253, 253);
+            color: rgb(0, 0, 0);
+            border-radius: 10px;
+            padding: 20px;
+            transition: height 1s;
+            -webkit-transition: height 1s;
+
+        }
+
+        .div {
+            overflow: hidden;
+            max-height: 300px;
+            background-color: rgb(255, 253, 253);
+            color: rgb(0, 0, 0);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .divspl div:hover {
+            max-height: 900px;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 500px;
+        }
+
+       
+
+        .carousel-cell {
+            width: "10%";
+            height: "600%";
+            margin-right: 50px;
+            color: white;
+            float: center;
+        }
+
+        /* cell number */
+        .carousel-cell::before {
+            display: block;
+        }
+        .next{width:50%;
+        height:50%;}
+
+        @media only screen and (max-width: 400px) {
+ .divspl {
+            
+            grid-template-columns: 350px;
+            grid-template-rows: 450px;
+         
+
+        }
+         .img-wrapper {
+            display: grid;
+            height: 500px;
+            width:400px;
+
+        }
+       
+
+
+
+}
+    </style>
+    <script>
+
+        const checkpoint = 200;
+        window.addEventListener("scroll", () => {
+            currentScroll = window.pageYOffset;
+            if (currentScroll <= checkpoint) {
+                opacity = 1 - currentScroll / checkpoint;
+            } else {
+                opacity = 0;
+            }
+          
+            document.querySelector(".front").style.opacity = opacity;
+            
+        });
+        
+
+    </script>
+</head>
+
+<body bgcolor="black">
+<div class="img-wrapper">
+        <div class="picc" style="background-image: url(../../static/images/cake1.png);"></div>
+        <div class="front" style="background-image: url(../../static/images/main.jpeg);"></div>
+  
+        
+    </div>
+    <div>
+        <h1
+            style="color:rgb(255, 255, 255); text-align: center; font-style: italic; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+            Our Specialities</h1><br>
+    </div>
+    <div class="divspl">
+
+        <div class="div 1"><img src="../../static/images/IMG20200923141501.jpg"><br>
+            <p>nutella flavour<br>Rs 450<br>
+                costumization is available</p>
+        </div>
+        <div class="div 2"><img src="../../static/images/IMG20200916181724.jpg"><br>
+            <p>Blueberry<br>Rs 450<br>
+                costumization is available</p>
+        </div>
+        <div class="div 3"><img src="../../static/images/IMG20200917161213.jpg"><br>
+            <p>Mixfruit<br>Rs 450<br>
+                costumization is available</p>
+        </div>
+        <div class="div 4"><img src="../../static/images/IMG20200919132016.jpg"><br>
+            <p>Chocolate<br>Rs 450<br>
+                costumization is available</p>
+        </div>
+        <div class="div 5"><img src="../../static/images/IMG20200924183520.jpg"><br>
+            <p>Chocochip<br>Rs 450<br>
+                costumization is available</p>
+        </div>
+        <div class="div 6"><img src="../../static/images/IMG20200923141324_1.jpg"><br>
+            <p>nutella flavour<br>Rs 450<br>
+                costumization is available</p>
+        </div>
+
+    </div>
+
+    
+
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script src="https://unpkg.com/flickity@2.2.1/dist/flickity.pkgd.min.js"></script>   
+</body>
+{% comment %} 
 <div
   id="carouselExampleIndicators"
   class="carousel slide my-4"
@@ -134,6 +294,6 @@
   
   
 </div>
-
+ {% endcomment %}
 
 {% endblock content %}
