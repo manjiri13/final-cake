@@ -78,9 +78,9 @@
 		<div class="header">
 			<h2>Login to Cakery</h2>
 		</div>
-    <form method="post" action="{% url 'login' %}">
-      {% csrf_token %} {# A more "HTML" way of creating the login form#}
-
+        
+    <form method="POST" action="{% url 'login' %}" > {# A more "HTML" way of creating the login form#}
+ {% csrf_token %}
       <div class="login">
 			<div class="form-control1">
             <label for="username">Username</label><br>

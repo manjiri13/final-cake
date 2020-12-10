@@ -34,6 +34,10 @@ def home(request):
     }
     return render(request, 'store/home.html', context)
 
+
+
+
+
 def menu(request):
     if request.user.is_authenticated:
         customer = request.user.customer

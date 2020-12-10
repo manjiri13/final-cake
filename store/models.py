@@ -25,8 +25,6 @@ class ProductDetail(models.Model):
 
     def get_absolute_url(self):
         return reverse('product-detail', kwargs={'pk': self.pk , 'slug': self.name})
-    
-
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
@@ -56,13 +54,13 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(default=timezone.now)
-
+    price = models.DecimalField(max_digits=6, decimal_places=2,default = 199)
+    
     @property
     def get_total(self):
-        total = self.product.price * self.quantity
+        total = self.price * self.quantity
         return total
-
-
+    
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(
         Customer, on_delete=models.SET_NULL, null=True, blank=True)
